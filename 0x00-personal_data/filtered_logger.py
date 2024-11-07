@@ -8,6 +8,7 @@ from typing import List
 import os
 import mysql.connector
 
+
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
@@ -55,7 +56,7 @@ def get_logger() -> logging.Logger:
     return logger
 
 
-def get_db()  -> mysql.connector.connection.MySQLConnection:
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """Returns a database connection"""
     user = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
     password = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
