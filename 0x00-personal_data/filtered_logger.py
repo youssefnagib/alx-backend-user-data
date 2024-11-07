@@ -4,9 +4,8 @@
 
 import logging
 import re
-from typing import List, Union, Any
+from typing import List
 import os
-from mysql.connector.connection import MySQLConnection
 import mysql.connector
 
 
@@ -57,7 +56,7 @@ def get_logger() -> logging.Logger:
     return logger
 
 
-def get_db() -> Union[MySQLConnection, Any]:
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """Returns a database connection"""
     user = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
     password = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
