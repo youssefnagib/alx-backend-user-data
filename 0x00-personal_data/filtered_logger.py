@@ -6,7 +6,7 @@ import logging
 import re
 from typing import List
 import os
-import mysql.connector
+import mysql
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
@@ -69,4 +69,4 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=database
     )
 
-    return connection # type: ignore[return-value]
+    return connection
