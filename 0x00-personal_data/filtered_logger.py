@@ -8,7 +8,6 @@ from typing import List
 import os
 import mysql.connector
 
-
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
@@ -70,4 +69,4 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=database
     )
 
-    return connection
+    return connection # type: ignore[return-value]
