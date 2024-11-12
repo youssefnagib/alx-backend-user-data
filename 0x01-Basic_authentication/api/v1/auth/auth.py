@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+''' This function is used to generate the output'''
 from flask import request
 from typing import List, TypeVar
 
