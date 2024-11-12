@@ -17,7 +17,8 @@ class BasicAuth(Auth):
         return authorization_header[len("Basic "):]
 
     def decode_base64_authorization_header(self,
-                                           base64_authorization_header: str) -> str:
+                                           base64_authorization_header: str
+                                           ) -> str:
         ''' Decode base64 authorization header'''
         import base64
         if not base64_authorization_header:
