@@ -68,7 +68,7 @@ class BasicAuth(Auth):
             return user
 
         return None
-    
+
     def current_user(self, request=None) -> TypeVar('User'):
         ''' Retrieve the current authenticated user from the request'''
         if request is None:
@@ -83,7 +83,9 @@ class BasicAuth(Auth):
         if base64_auth_header is None:
             return None
 
-        decoded_auth = self.decode_base64_authorization_header(base64_auth_header)
+        decoded_auth = self.decode_base64_authorization_header(
+            base64_auth_header
+            )
         if decoded_auth is None:
             return None
 
