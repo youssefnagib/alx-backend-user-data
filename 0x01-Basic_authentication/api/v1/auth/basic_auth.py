@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 ''' The basic authentication method'''
 from api.v1.auth.auth import Auth
-from typing import TypeVar, Optional
+from typing import TypeVar
 from models.user import User
 
 
@@ -49,19 +49,22 @@ class BasicAuth(Auth):
 
     def user_object_from_credentials(self,
                                      user_email: str,
-                                     user_pwd: str) -> Optional[User]:
+                                     user_pwd: str) -> TypeVar('User'):
         ''' Create a User object from user email and password'''
         if user_email is None or not isinstance(user_email, str):
             return None
         if user_pwd is None or not isinstance(user_pwd, str):
             return None
 
-        users = User.search({'email': user_email})
-        if not users:
+        try:
+            users = User.search({'email': user_email})
+        except Exception:
             return None
+        if len(users) <= 0:
+             return None
 
         user = users[0]
-        if not user.is_valid_password(user_pwd):
-            return None
+        if user.is_valid_password(user_pwd):
+            return user
 
-        return user
+        return None
