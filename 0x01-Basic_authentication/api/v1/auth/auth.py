@@ -12,23 +12,19 @@ class Auth:
         """
         Check if the current request requires authentication
         """
-        if path is None:
+        if path is None or not excluded_paths:
             return True
-
-        if not excluded_paths:
-            return True
-
-        path = path if path.endswith('/') else path + '/'
-
-        for excluded_path in excluded_paths:
-            if not excluded_path.endswith('/'):
-                excluded_path += '/'
-            if excluded_path.endswith("*"):
-                if path.startswith(excluded_path[:-1]):
+        path2 = path[:]
+        if path2[-1] != '/':
+            path2 += '/'
+        for path in excluded_paths:
+            if path[-1] == '*':
+                temp_path = path[:-1]
+                if path2.startswith(temp_path):
                     return False
-            if path == excluded_path:
-                return False
-
+            else:
+                if path == path2:
+                    return False
         return True
 
     def authorization_header(self, request=None) -> str:
