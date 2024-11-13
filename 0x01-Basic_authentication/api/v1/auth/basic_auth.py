@@ -61,7 +61,7 @@ class BasicAuth(Auth):
         except Exception:
             return None
         if len(users) <= 0:
-             return None
+            return None
 
         user = users[0]
         if user.is_valid_password(user_pwd):
